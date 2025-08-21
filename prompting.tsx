@@ -668,14 +668,14 @@ export function PromptingIsAllYouNeed() {
                     className="border border-[#BAE1FF]/30 hover:border-[#BAE1FF] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
                   >
                     <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-[#BAE1FF]">DEGREE_PROGRAM_{item}</h3>
-                      <span className="text-gray-400 text-sm">2021 - 2025</span>
+                      <h3 className="text-xl font-bold text-[#BAE1FF]">High School</h3>
+                      <span className="text-gray-400 text-sm">2021 - 2024</span>
                     </div>
-                    <p className="text-gray-300 mb-4">University Name</p>
+                    <p className="text-gray-300 mb-4">Gujarat Public School - CBSE</p>
                     <ul className="text-gray-400 space-y-2">
-                      <li>• Bachelor of Science in Computer Science</li>
-                      <li>• Relevant coursework: Data Structures, Algorithms, Web Development</li>
-                      <li>• GPA: 3.8/4.0</li>
+                      <li>• 12th Science - PCM</li>
+                      <li>• Relevant coursework: Exploring Web Development (HTML & CSS), Python Basics, MySQL Basics</li>
+                      <li>• Percentage: 91%</li>
                     </ul>
                   </div>
                 ))}
