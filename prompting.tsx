@@ -602,9 +602,9 @@ export function PromptingIsAllYouNeed() {
                     <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20">
                       SEE_LIVE
                     </Button>
-                    <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#BAE1FF]/50 hover:border-[#BAE1FF] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20">
+                   <a href="https://github.com/Heet-P?tab=repositories"> <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#BAE1FF]/50 hover:border-[#BAE1FF] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20">
                       GITHUB
-                    </Button>
+                    </Button></a> 
                   </div>
                 </CardContent>
               </Card>
