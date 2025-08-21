@@ -570,7 +570,7 @@ export function PromptingIsAllYouNeed() {
             {Array.from({ length: 6 }, (_, i) => (
               <Card
                 key={i}
-                className="bg-gray-900 border-2 border-[#BAE1FF]/30 hover:border-[#BAE1FF] transition-all duration-300 group rounded-xl overflow-hidden shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20"
+                className="bg-gray-900 border-2 border-[#BAE1FF]/30 hover:border-[#BAE1FF] transition-all duration-300 group rounded-xl overflow-hidden shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
               >
                 <CardContent className="p-6">
                   <div className="h-48 bg-gray-800 mb-4 flex items-center justify-center border border-[#FFFFBA]/20 group-hover:border-[#FFFFBA]/50 transition-colors rounded-lg">
@@ -584,7 +584,7 @@ export function PromptingIsAllYouNeed() {
                   <p className="text-gray-400 text-sm mb-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {["REACT", "NODE", "API"].map((tech, techIndex) => (
                       <span
                         key={tech}
@@ -597,6 +597,14 @@ export function PromptingIsAllYouNeed() {
                         {tech}
                       </span>
                     ))}
+                  </div>
+                  <div className="flex gap-3">
+                    <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20">
+                      SEE_LIVE
+                    </Button>
+                    <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#BAE1FF]/50 hover:border-[#BAE1FF] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20">
+                      GITHUB
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -614,71 +622,88 @@ export function PromptingIsAllYouNeed() {
           </h2>
 
           <div className="flex justify-center mb-12">
-            <div className="relative bg-gray-800 p-1 rounded-full border border-[#FFFFBA]/30 shadow-lg shadow-[#FFFFBA]/10">
+            <div className="relative bg-gray-800/80 p-1 rounded-xl border-2 border-[#FFB3BA]/50 backdrop-blur-sm shadow-lg shadow-[#FFB3BA]/20">
               <div
-                className={`absolute top-1 h-10 bg-gradient-to-r from-[#FFB3BA] to-[#BAE1FF] transition-all duration-300 rounded-full ${
-                  activeTab === "experience" ? "left-1 w-[130px]" : "left-[132px] w-[110px]"
+                className={`absolute top-1 h-10 bg-gradient-to-r from-[#FFB3BA] via-[#FF6B9D] to-[#BAE1FF] rounded-lg transition-all duration-500 shadow-lg ${
+                  activeTab === "experience"
+                    ? "left-1 w-[120px] shadow-[#FFB3BA]/50"
+                    : "left-[122px] w-[100px] shadow-[#BAE1FF]/50"
                 }`}
+                style={{
+                  boxShadow:
+                    activeTab === "experience"
+                      ? "0 0 20px rgba(255, 179, 186, 0.6), inset 0 0 20px rgba(255, 179, 186, 0.2)"
+                      : "0 0 20px rgba(186, 225, 255, 0.6), inset 0 0 20px rgba(186, 225, 255, 0.2)",
+                }}
               />
-              <button
-                onClick={() => setActiveTab("experience")}
-                className={`relative z-10 px-6 py-2 text-sm font-bold transition-colors duration-300 rounded-full w-[130px] ${
-                  activeTab === "experience" ? "text-black" : "text-white"
-                }`}
-              >
-                EXPERIENCE
-              </button>
-              <button
-                onClick={() => setActiveTab("education")}
-                className={`relative z-10 px-6 py-2 text-sm font-bold transition-colors duration-300 rounded-full w-[110px] ${
-                  activeTab === "education" ? "text-black" : "text-white"
-                }`}
-              >
-                EDUCATION
-              </button>
+              <div className="relative flex">
+                <button
+                  onClick={() => setActiveTab("experience")}
+                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${
+                    activeTab === "experience" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
+                  }`}
+                  style={{ width: "120px" }}
+                >
+                  EXPERIENCE
+                </button>
+                <button
+                  onClick={() => setActiveTab("education")}
+                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${
+                    activeTab === "education" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
+                  }`}
+                  style={{ width: "100px" }}
+                >
+                  EDUCATION
+                </button>
+              </div>
             </div>
           </div>
 
           <div className="space-y-8">
             {activeTab === "experience" ? (
               <div className="space-y-6">
-                {[1, 2, 3].map((item) => (
-                  <div
-                    key={item}
-                    className="border border-[#FFB3BA]/30 hover:border-[#FFB3BA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20 hover:shadow-2xl"
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-[#FFB3BA]">SOFTWARE_DEVELOPER_{item}</h3>
-                      <span className="text-gray-400 text-sm">2024 - 2025</span>
-                    </div>
-                    <p className="text-gray-300 mb-4">Company Name Inc.</p>
-                    <ul className="text-gray-400 space-y-2">
-                      <li>• Developed and maintained web applications using modern frameworks</li>
-                      <li>• Collaborated with cross-functional teams to deliver high-quality software</li>
-                      <li>• Implemented responsive designs and optimized performance</li>
-                    </ul>
+                <div className="border border-[#FFB3BA]/30 hover:border-[#FFB3BA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20 hover:shadow-2xl">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold text-[#FFB3BA]">Freelance FrontEnd Developer</h3>
+                    <span className="text-gray-400 text-sm">2024 - Present</span>
                   </div>
-                ))}
+                  <p className="text-gray-300 mb-4">.</p>
+                  <ul className="text-gray-400 space-y-2">
+                    <li>• Developed responsive web applications using React and Next.js</li>
+                    <li>• Collaborated with teams to implement pixel-perfect UI components</li>
+                    <li>• Optimized application performance and implemented modern CSS frameworks</li>
+                  </ul>
+                </div>
               </div>
             ) : (
               <div className="space-y-6">
-                {[1, 2].map((item) => (
-                  <div
-                    key={item}
-                    className="border border-[#BAE1FF]/30 hover:border-[#BAE1FF] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-[#BAE1FF]">High School</h3>
-                      <span className="text-gray-400 text-sm">2021 - 2024</span>
-                    </div>
-                    <p className="text-gray-300 mb-4">Gujarat Public School - CBSE</p>
-                    <ul className="text-gray-400 space-y-2">
-                      <li>• 12th Science - PCM</li>
-                      <li>• Relevant coursework: Exploring Web Development (HTML & CSS), Python Basics, MySQL Basics</li>
-                      <li>• Percentage: 91%</li>
-                    </ul>
+                <div className="border border-[#FFFFBA]/30 hover:border-[#FFFFBA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFFFBA]/10 hover:shadow-[#FFFFBA]/20 hover:shadow-2xl">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold text-[#FFFFBA]">HIGH_SCHOOL</h3>
+                    <span className="text-gray-400 text-sm">2021 - 2024</span>
                   </div>
-                ))}
+                  <p className="text-gray-300 mb-4">Gujarat Public School - CBSE</p>
+                  <ul className="text-gray-400 space-y-2">
+                    <li>• Graduated with Honors (Finals: 91%)</li>
+                    <li>• Won multiple State Level Physics competitions</li>
+                    <li>• School Gold Medalist - International Maths Olympiad </li>
+                    <li>• Presented Physics project to ISRO-Chairman</li>
+                  </ul>
+                </div>
+
+                <div className="border border-[#DDA0DD]/30 hover:border-[#DDA0DD] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#DDA0DD]/10 hover:shadow-[#DDA0DD]/20 hover:shadow-2xl">
+                  <div className="flex justify-between items-start mb-4">
+                    <h3 className="text-xl font-bold text-[#DDA0DD]">BTech-Computer Science & Engineering</h3>
+                    <span className="text-gray-400 text-sm">2024 - Present</span>
+                  </div>
+                  <p className="text-gray-300 mb-4">CHARUSAT</p>
+                  <ul className="text-gray-400 space-y-2">
+                    <li>• Bachelor of Science in Computer Science (Current CGPA: 8.8/10.0)</li>
+                    <li>• Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems</li>
+                    <li>• Technincal Lead for Git/GitHub Club.</li>
+                    <li>• Expected graduation: June 2028</li>
+                  </ul>
+                </div>
               </div>
             )}
           </div>
@@ -705,14 +730,14 @@ export function PromptingIsAllYouNeed() {
                   </div>
                   <div className="flex items-center space-x-4">
                     <span className="w-20 text-gray-500">PHONE:</span>
-                    <span>+91 9227011606</span>
+                    <span>+91 9227011606 </span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">GITHUB:</span>
-                    <span>github.com/heet-p</span>
+                    <span className="w-20 text-gray-500">GITHUB:<a href="https://github.com/Heet-P">Heet-P</a></span>
+                    <span>github.com/Heet-p</span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">LINKEDIN:</span>
+                    <span className="w-20 text-gray-500">LINKEDIN:<a href="https://www.linkedin.com/in/heetparikh/">Heet Parikh</a></span>
                     <span>linkedin.com/in/heetparikh</span>
                   </div>
                 </div>
