@@ -311,9 +311,10 @@ export function PromptingIsAllYouNeed() {
 
     const initializeGame = () => {
       const scale = scaleRef.current
-      const LARGE_PIXEL_SIZE = 8 * scale
-      const SMALL_PIXEL_SIZE = 4 * scale
-      const BALL_SPEED = 2 * scale
+      const LARGE_PIXEL_SIZE = 9 * scale
+      const SMALL_PIXEL_SIZE = 5 * scale
+      const isMobile = window.innerWidth < 768
+      const BALL_SPEED = isMobile ? Math.max(2 * scale, 1.5) : 2 * scale
 
       pixelsRef.current = []
       powerupsRef.current = []
