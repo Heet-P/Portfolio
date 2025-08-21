@@ -27,7 +27,7 @@ I’m a Computer Science & Engineering student at **CSPIT, CHARUSAT** who loves 
 
 ## 🎯 Goals
 - Build things that make my life easier and me? more lazy xD
-- Sharpen logicaal thingking and problem solving so that i stop avoiding LeetCode hards ;-;
+- Sharpen logical thinking and problem solving so that i stop avoiding LeetCode hards ;-;
 - Collaborate with developers and peers on open-source work and projects.
 
 ---
