@@ -232,6 +232,16 @@ export function PromptingIsAllYouNeed() {
   const powerupsRef = useRef<Powerup[]>([])
   const scaleRef = useRef(1)
 
+  const scrollToPortfolio = () => {
+    const portfolioSection = document.getElementById("portfolio-section")
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -240,10 +250,13 @@ export function PromptingIsAllYouNeed() {
     if (!ctx) return
 
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
-      scaleRef.current = Math.min(canvas.width / 1000, canvas.height / 1000)
-      initializeGame()
+      const heroSection = canvas.parentElement
+      if (heroSection) {
+        canvas.width = heroSection.clientWidth
+        canvas.height = heroSection.clientHeight
+        scaleRef.current = Math.min(canvas.width / 1000, canvas.height / 1000)
+        initializeGame()
+      }
     }
 
     const initializeGame = () => {
@@ -528,11 +541,45 @@ export function PromptingIsAllYouNeed() {
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full"
-      aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text"
-    />
+    <div className="w-full">
+      <section className="relative w-full h-screen flex flex-col items-center justify-center bg-black">
+        <div className="relative w-full h-full">
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full"
+            aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text"
+          />
+        </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <button
+            onClick={scrollToPortfolio}
+            className="group relative px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105"
+          >
+            <span className="flex items-center gap-2">
+              Explore More
+              <svg
+                className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </section>
+      <section id="portfolio-section" className="w-full h-screen bg-gray-50">
+        <div className="w-full h-full">
+          <iframe
+            src="http://heetparikh.me/wdfDashboard"
+            className="w-full h-full border-0"
+            title="Heet Parikh Portfolio Dashboard"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    </div>
   )
 }
 
