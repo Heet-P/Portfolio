@@ -794,12 +794,12 @@ export function PromptingIsAllYouNeed() {
                     <span>+91 9227011606 </span>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">GITHUB:<a href="https://github.com/Heet-P">Heet-P</a></span>
-                    <span>github.com/Heet-p</span>
+                    <a href="https://github.com/Heet-P"><span className="w-20 text-gray-500">GITHUB: @Heet-P</span></a>
+  
                   </div>
                   <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">LINKEDIN:<a href="https://www.linkedin.com/in/heetparikh/">Heet Parikh</a></span>
-                    <span>linkedin.com/in/heetparikh</span>
+                  <a href="https://www.linkedin.com/in/heetparikh/"><span className="w-20 text-gray-500">LINKEDIN: @Heet Parikh</span></a>
+        
                   </div>
                 </div>
               </div>
