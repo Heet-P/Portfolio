@@ -1,6 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 const COLOR = "#FFFFFF"
 const HIT_COLOR = "#333333"
@@ -231,16 +233,10 @@ export function PromptingIsAllYouNeed() {
   const paddlesRef = useRef<Paddle[]>([])
   const powerupsRef = useRef<Powerup[]>([])
   const scaleRef = useRef(1)
+  const [activeTab, setActiveTab] = useState<"experience" | "education">("experience")
 
-  const scrollToPortfolio = () => {
-    const portfolioSection = document.getElementById("portfolio-section")
-    if (portfolioSection) {
-      portfolioSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  }
+  const pastelColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5", "#F0E68C"]
+  const techColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5"]
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -250,13 +246,10 @@ export function PromptingIsAllYouNeed() {
     if (!ctx) return
 
     const resizeCanvas = () => {
-      const heroSection = canvas.parentElement
-      if (heroSection) {
-        canvas.width = heroSection.clientWidth
-        canvas.height = heroSection.clientHeight
-        scaleRef.current = Math.min(canvas.width / 1000, canvas.height / 1000)
-        initializeGame()
-      }
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      scaleRef.current = Math.min(canvas.width / 1000, canvas.height / 1000)
+      initializeGame()
     }
 
     const initializeGame = () => {
@@ -540,43 +533,223 @@ export function PromptingIsAllYouNeed() {
     }
   }, [])
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   return (
-    <div className="w-full">
-      <section className="relative w-full h-screen flex flex-col items-center justify-center bg-black">
-        <div className="relative w-full h-full">
-          <canvas
-            ref={canvasRef}
-            className="w-full h-full"
-            aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text"
-          />
-        </div>
+    <div className="bg-black text-white font-mono">
+      <section id="hero" className="relative h-screen overflow-hidden">
+        <canvas
+          ref={canvasRef}
+          className="absolute top-0 left-0 w-full h-full"
+          aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text"
+        />
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-          <button
-            onClick={scrollToPortfolio}
-            className="group relative px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105"
+          <Button
+            onClick={() => scrollToSection("projects")}
+            className="bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-sm transition-all duration-300 group rounded-full px-8 py-3"
           >
-            <span className="flex items-center gap-2">
-              Explore More
-              <svg
-                className="w-4 h-4 transform group-hover:translate-y-1 transition-transform duration-300"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-              </svg>
-            </span>
-          </button>
+            Explore More
+            <span className="ml-2 transition-transform duration-300 group-hover:translate-y-1">↓</span>
+          </Button>
         </div>
       </section>
-      <section id="portfolio-section" className="w-full h-screen bg-gray-50">
-        <div className="w-full h-full">
-          <iframe
-            src="http://heetparikh.me/wdfDashboard"
-            className="w-full h-full border-0"
-            title="Heet Parikh Portfolio Dashboard"
-            loading="lazy"
-          />
+
+      <section id="projects" className="min-h-screen py-20 px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 tracking-wider">
+            <span className="border-2 border-[#BAFFC9] px-6 py-2 rounded-lg shadow-lg shadow-[#BAFFC9]/20">
+              PROJECTS
+            </span>
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 6 }, (_, i) => (
+              <Card
+                key={i}
+                className="bg-gray-900 border-2 border-[#BAE1FF]/30 hover:border-[#BAE1FF] transition-all duration-300 group rounded-xl overflow-hidden shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20"
+              >
+                <CardContent className="p-6">
+                  <div className="h-48 bg-gray-800 mb-4 flex items-center justify-center border border-[#FFFFBA]/20 group-hover:border-[#FFFFBA]/50 transition-colors rounded-lg">
+                    <div className="text-6xl text-gray-600 group-hover:text-gray-400 transition-colors">
+                      [{String(i + 1).padStart(2, "0")}]
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: pastelColors[i % pastelColors.length] }}>
+                    PROJECT_{String(i + 1).padStart(2, "0")}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {["REACT", "NODE", "API"].map((tech, techIndex) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 text-xs rounded-full text-black font-medium"
+                        style={{
+                          backgroundColor: techColors[techIndex % techColors.length],
+                          border: `1px solid ${techColors[techIndex % techColors.length]}40`,
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="min-h-screen py-20 px-8 bg-black">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 tracking-wider">
+            <span className="border-2 border-[#BAE1FF] px-6 py-2 rounded-lg shadow-lg shadow-[#BAE1FF]/20">
+              ABOUT_ME
+            </span>
+          </h2>
+
+          <div className="flex justify-center mb-12">
+            <div className="relative bg-gray-800 p-1 rounded-full border border-[#FFFFBA]/30 shadow-lg shadow-[#FFFFBA]/10">
+              <div
+                className={`absolute top-1 h-10 bg-gradient-to-r from-[#FFB3BA] to-[#BAE1FF] transition-all duration-300 rounded-full ${
+                  activeTab === "experience" ? "left-1 w-[130px]" : "left-[132px] w-[110px]"
+                }`}
+              />
+              <button
+                onClick={() => setActiveTab("experience")}
+                className={`relative z-10 px-6 py-2 text-sm font-bold transition-colors duration-300 rounded-full w-[130px] ${
+                  activeTab === "experience" ? "text-black" : "text-white"
+                }`}
+              >
+                EXPERIENCE
+              </button>
+              <button
+                onClick={() => setActiveTab("education")}
+                className={`relative z-10 px-6 py-2 text-sm font-bold transition-colors duration-300 rounded-full w-[110px] ${
+                  activeTab === "education" ? "text-black" : "text-white"
+                }`}
+              >
+                EDUCATION
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-8">
+            {activeTab === "experience" ? (
+              <div className="space-y-6">
+                {[1, 2, 3].map((item) => (
+                  <div
+                    key={item}
+                    className="border border-[#FFB3BA]/30 hover:border-[#FFB3BA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20 hover:shadow-2xl"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-bold text-[#FFB3BA]">SOFTWARE_DEVELOPER_{item}</h3>
+                      <span className="text-gray-400 text-sm">2024 - 2025</span>
+                    </div>
+                    <p className="text-gray-300 mb-4">Company Name Inc.</p>
+                    <ul className="text-gray-400 space-y-2">
+                      <li>• Developed and maintained web applications using modern frameworks</li>
+                      <li>• Collaborated with cross-functional teams to deliver high-quality software</li>
+                      <li>• Implemented responsive designs and optimized performance</li>
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {[1, 2].map((item) => (
+                  <div
+                    key={item}
+                    className="border border-[#BAE1FF]/30 hover:border-[#BAE1FF] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-bold text-[#BAE1FF]">DEGREE_PROGRAM_{item}</h3>
+                      <span className="text-gray-400 text-sm">2021 - 2025</span>
+                    </div>
+                    <p className="text-gray-300 mb-4">University Name</p>
+                    <ul className="text-gray-400 space-y-2">
+                      <li>• Bachelor of Science in Computer Science</li>
+                      <li>• Relevant coursework: Data Structures, Algorithms, Web Development</li>
+                      <li>• GPA: 3.8/4.0</li>
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="min-h-screen py-20 px-8 flex items-center">
+        <div className="max-w-4xl mx-auto w-full">
+          <h2 className="text-4xl font-bold text-center mb-16 tracking-wider">
+            <span className="border-2 border-[#FFFFBA] px-6 py-2 rounded-lg shadow-lg shadow-[#FFFFBA]/20">
+              CONTACT_ME
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="border border-[#BAFFC9]/30 p-6 rounded-xl shadow-lg shadow-[#BAFFC9]/10">
+                <h3 className="text-xl font-bold mb-4 text-[#BAFFC9]">GET_IN_TOUCH</h3>
+                <div className="space-y-4 text-gray-300">
+                  <div className="flex items-center space-x-4">
+                    <span className="w-20 text-gray-500">EMAIL:</span>
+                    <span>heet16@gmail.com</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <span className="w-20 text-gray-500">PHONE:</span>
+                    <span>+1 (555) 123-4567</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <span className="w-20 text-gray-500">GITHUB:</span>
+                    <span>github.com/heet-p</span>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <span className="w-20 text-gray-500">LINKEDIN:</span>
+                    <span>linkedin.com/in/heetparikh</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="border border-[#FFB3BA]/30 p-6 rounded-xl shadow-lg shadow-[#FFB3BA]/10">
+              <h3 className="text-xl font-bold mb-6 text-[#FFB3BA]">SEND_MESSAGE</h3>
+              <form className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="NAME"
+                    className="w-full bg-gray-900 border border-[#BAE1FF]/30 focus:border-[#BAE1FF] p-3 text-white placeholder-gray-500 focus:outline-none rounded-lg transition-colors"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="EMAIL"
+                    className="w-full bg-gray-900 border border-[#BAE1FF]/30 focus:border-[#BAE1FF] p-3 text-white placeholder-gray-500 focus:outline-none rounded-lg transition-colors"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    placeholder="MESSAGE"
+                    rows={5}
+                    className="w-full bg-gray-900 border border-[#BAE1FF]/30 focus:border-[#BAE1FF] p-3 text-white placeholder-gray-500 focus:outline-none resize-none rounded-lg transition-colors"
+                  />
+                </div>
+                <Button className="w-full bg-white text-black hover:bg-gray-200 font-bold py-3 rounded-lg transition-colors">
+                  SEND_MESSAGE
+                </Button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
     </div>
