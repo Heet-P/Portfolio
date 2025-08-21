@@ -705,7 +705,7 @@ export function PromptingIsAllYouNeed() {
                   </div>
                   <div className="flex items-center space-x-4">
                     <span className="w-20 text-gray-500">PHONE:</span>
-                    <span>+1 (555) 123-4567</span>
+                    <span>+91 9227011606</span>
                   </div>
                   <div className="flex items-center space-x-4">
                     <span className="w-20 text-gray-500">GITHUB:</span>
