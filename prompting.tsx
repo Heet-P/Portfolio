@@ -238,6 +238,63 @@ export function PromptingIsAllYouNeed() {
   const pastelColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5", "#F0E68C"]
   const techColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5"]
 
+   const projectsData = [
+    {
+      id: 1,
+      name: "E_COMMERCE_PLATFORM",
+      description: "Full-stack e-commerce solution with payment integration and admin dashboard.",
+      technologies: ["REACT", "NODE", "STRIPE"],
+      liveLink: "https://ecommerce-demo.heetparikh.me",
+      githubLink: "https://github.com/heet-p/ecommerce-platform",
+      color: pastelColors[0],
+    },
+    {
+      id: 2,
+      name: "TASK_MANAGEMENT_APP",
+      description: "Collaborative task management tool with real-time updates and team features.",
+      technologies: ["NEXT.JS", "SOCKET.IO", "MONGODB"],
+      liveLink: "https://taskmanager.heetparikh.me",
+      githubLink: "https://github.com/heet-p/task-manager",
+      color: pastelColors[1],
+    },
+    {
+      id: 3,
+      name: "WEATHER_DASHBOARD",
+      description: "Interactive weather dashboard with location-based forecasts and data visualization.",
+      technologies: ["VUE", "API", "CHARTS"],
+      liveLink: "https://weather-app.heetparikh.me",
+      githubLink: "https://github.com/heet-p/weather-dashboard",
+      color: pastelColors[2],
+    },
+    {
+      id: 4,
+      name: "PORTFOLIO_WEBSITE",
+      description: "Personal portfolio showcasing projects with interactive animations and responsive design.",
+      technologies: ["REACT", "FRAMER", "TAILWIND"],
+      liveLink: "https://portfolio.heetparikh.me",
+      githubLink: "https://github.com/heet-p/portfolio-v2",
+      color: pastelColors[3],
+    },
+    {
+      id: 5,
+      name: "BLOG_CMS_SYSTEM",
+      description: "Content management system for blogs with markdown support and SEO optimization.",
+      technologies: ["NEXT.JS", "PRISMA", "POSTGRES"],
+      liveLink: "https://blog-cms.heetparikh.me",
+      githubLink: "https://github.com/heet-p/blog-cms",
+      color: pastelColors[4],
+    },
+    {
+      id: 6,
+      name: "CHAT_APPLICATION",
+      description: "Real-time chat application with rooms, file sharing, and message encryption.",
+      technologies: ["SOCKET.IO", "EXPRESS", "JWT"],
+      liveLink: "https://chat-app.heetparikh.me",
+      githubLink: "https://github.com/heet-p/realtime-chat",
+      color: pastelColors[5],
+    },
+  ]
+
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -567,25 +624,23 @@ export function PromptingIsAllYouNeed() {
             </span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {Array.from({ length: 6 }, (_, i) => (
+            {projectsData.map((project, i) => (
               <Card
-                key={i}
+                key={project.id}
                 className="bg-gray-900 border-2 border-[#BAE1FF]/30 hover:border-[#BAE1FF] transition-all duration-300 group rounded-xl overflow-hidden shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
               >
                 <CardContent className="p-6">
                   <div className="h-48 bg-gray-800 mb-4 flex items-center justify-center border border-[#FFFFBA]/20 group-hover:border-[#FFFFBA]/50 transition-colors rounded-lg">
                     <div className="text-6xl text-gray-600 group-hover:text-gray-400 transition-colors">
-                      [{String(i + 1).padStart(2, "0")}]
+                      [{String(project.id).padStart(2, "0")}]
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-2" style={{ color: pastelColors[i % pastelColors.length] }}>
-                    PROJECT_{String(i + 1).padStart(2, "0")}
+                  <h3 className="text-xl font-bold mb-2" style={{ color: project.color }}>
+                    {project.name}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-                  </p>
+                  <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {["REACT", "NODE", "API"].map((tech, techIndex) => (
+                    {project.technologies.map((tech, techIndex) => (
                       <span
                         key={tech}
                         className="px-3 py-1 text-xs rounded-full text-black font-medium"
@@ -599,12 +654,18 @@ export function PromptingIsAllYouNeed() {
                     ))}
                   </div>
                   <div className="flex gap-3">
-                    <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20">
+                    <Button
+                      onClick={() => window.open(project.liveLink, "_blank")}
+                      className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20"
+                    >
                       SEE_LIVE
                     </Button>
-                   <a href="https://github.com/Heet-P?tab=repositories"> <Button className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#BAE1FF]/50 hover:border-[#BAE1FF] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20">
+                    <Button
+                      onClick={() => window.open(project.githubLink, "_blank")}
+                      className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#BAE1FF]/50 hover:border-[#BAE1FF] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20"
+                    >
                       GITHUB
-                    </Button></a> 
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
