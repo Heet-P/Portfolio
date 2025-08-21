@@ -39,4 +39,4 @@ I’m a Computer Science & Engineering student at **CSPIT, CHARUSAT** who loves 
 
 ---
 
-⭐ Thanks for stopping by my portfolio repo!  
+⭐ Thanks for stopping by my portfolio repo!
