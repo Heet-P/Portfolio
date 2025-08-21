@@ -728,7 +728,7 @@ export function PromptingIsAllYouNeed() {
                     <h3 className="text-xl font-bold text-[#FFB3BA]">Freelance FrontEnd Developer</h3>
                     <span className="text-gray-400 text-sm">2024 - Present</span>
                   </div>
-                  <p className="text-gray-300 mb-4">.</p>
+                  <p className="text-gray-300 mb-4">Team Echo</p>
                   <ul className="text-gray-400 space-y-2">
                     <li>• Developed responsive web applications using React and Next.js</li>
                     <li>• Collaborated with teams to implement pixel-perfect UI components</li>
