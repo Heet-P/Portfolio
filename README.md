@@ -1,42 +1,30 @@
-# 👋 Hi, I’m Heet  
+# Prompting Is All You Need
 
-I’m a Computer Science & Engineering student at **CSPIT, CHARUSAT** who loves building, breaking, and fixing things with code. My work includes **Game Gevelopment** and **Web Apps**   
+*Automatically synced with your [v0.app](https://v0.app) deployments*
 
----
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/heet-ps-projects/v0-prompting-is-all-you-need)
+[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/ZghQsZhr6fZ)
 
-## 🚀 What I Do
-- 🖥️ Build full-stack web apps (Next.js, Node.js, Vercel)    
-- 🧠 Experimenting with AI/ML models for fun projects like robots and hackathons.  
+## Overview
 
----
+This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
+Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
 
-## 🛠️ Tech & Tools I Use
-- **Languages:** C++, Java, Python, JavaScript  
-- **Web:** HTML, CSS, Next.js , Node.js    
-- **Other Tools:** Git/GitHub, , VS Code Insiders, Figma  
+## Deployment
 
----
+Your project is live at:
 
-## 📚 Currently Learning
-- Advanced Web Technologies (frontend + backend with AI integations)  
-- Data Structures & Algorithms (LeetCode)  
-- YUGAS : THE AGES (personal game development Project)
-- DrAmbient (Ambient healthcare assisting app with AI)   
+**[https://vercel.com/heet-ps-projects/v0-prompting-is-all-you-need](https://vercel.com/heet-ps-projects/v0-prompting-is-all-you-need)**
 
----
+## Build your app
 
-## 🎯 Goals
-- Build things that make my life easier and me? more lazy xD
-- Sharpen logical thinking and problem solving so that i stop avoiding LeetCode hards ;-;
-- Collaborate with developers and peers on open-source work and projects.
+Continue building your app on:
 
----
+**[https://v0.app/chat/projects/ZghQsZhr6fZ](https://v0.app/chat/projects/ZghQsZhr6fZ)**
 
-## 📬 Let’s Connect
-- **LinkedIn:** [Heet Parikh](https://linkedin.com/in/heetparikh)  
-- **GitHub:** [@Heet-p](https://github.com/heet-p)  
-- **Email:** heet16@gmail.com
+## How It Works
 
----
-
-⭐ Thanks for stopping by my portfolio repo!  
+1. Create and modify your project using [v0.app](https://v0.app)
+2. Deploy your chats from the v0 interface
+3. Changes are automatically pushed to this repository
+4. Vercel deploys the latest version from this repository

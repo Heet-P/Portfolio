@@ -256,7 +256,7 @@ export function PromptingIsAllYouNeed() {
       const scale = scaleRef.current
       const LARGE_PIXEL_SIZE = 8 * scale
       const SMALL_PIXEL_SIZE = 4 * scale
-      const BALL_SPEED = 3 * scale
+      const BALL_SPEED = 2 * scale
 
       pixelsRef.current = []
       powerupsRef.current = []
@@ -551,7 +551,7 @@ export function PromptingIsAllYouNeed() {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
           <Button
             onClick={() => scrollToSection("projects")}
-            className="bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-sm transition-all duration-300 group rounded-full px-8 py-3"
+            className="bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 group rounded-full px-8 py-3 shadow-[0_0_20px_rgba(255,179,186,0.3)] hover:shadow-[0_0_30px_rgba(255,179,186,0.6),0_0_60px_rgba(255,179,186,0.3)] hover:scale-105"
           >
             Explore More
             <span className="ml-2 transition-transform duration-300 group-hover:translate-y-1">↓</span>
