@@ -275,24 +275,24 @@ export function PromptingIsAllYouNeed() {
       githubLink: "https://github.com/heet-p/portfolio-v2",
       color: pastelColors[3],
     },
-    /*{
-      id: 5,
-      name: "BLOG_CMS_SYSTEM",
-      description: "Content management system for blogs with markdown support and SEO optimization.",
-      technologies: ["NEXT.JS", "PRISMA", "POSTGRES"],
-      liveLink: "https://blog-cms.heetparikh.me",
-      githubLink: "https://github.com/heet-p/blog-cms",
+   {
+      id: 2,
+      name: "GRAVITAS_DRIFT",
+      description: "Web Based Aestroid Shooter game with leaderboard and database",
+      technologies: ["HTML CANVAS", "JavaScript", "SupaBase"],
+      liveLink: "https://gravitas-drift.netlify.app/",
+      githubLink: "https://github.com/Heet-P/Gravitas-Drift",
       color: pastelColors[4],
     },
-    {
-      id: 6,
-      name: "CHAT_APPLICATION",
-      description: "Real-time chat application with rooms, file sharing, and message encryption.",
-      technologies: ["SOCKET.IO", "EXPRESS", "JWT"],
-      liveLink: "https://chat-app.heetparikh.me",
-      githubLink: "https://github.com/heet-p/realtime-chat",
+     {
+      id: 3,
+      name: "Globe_Trotters",
+      description: "AI-Powered Website which can help you curate the perfect trips from planning to budgeting.",
+      technologies: ["NextJS", "SupaBase"],
+      liveLink: "https://drive.google.com/file/d/1I6Gsg4ZwZl7ULV4y6E-1gZ6dEYDqHTW7/view?usp=sharing",
+      githubLink: "https://github.com/dhrumil246/GlobeTrotter_Odoo",
       color: pastelColors[5],
-    },*/
+    }
   ]
 
   useEffect(() => {
