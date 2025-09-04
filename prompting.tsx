@@ -239,13 +239,13 @@ export function PromptingIsAllYouNeed() {
   const techColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5"]
 
    const projectsData = [
-    {
+    /*{
       id: 1,
       name: "E_COMMERCE_PLATFORM",
       description: "Full-stack e-commerce solution with payment integration and admin dashboard.",
       technologies: ["REACT", "NODE", "STRIPE"],
-      liveLink: "https://ecommerce-demo.heetparikh.me",
-      githubLink: "https://github.com/heet-p/ecommerce-platform",
+      liveLink: "#",
+      githubLink: "https://github.com/Heet-p/",
       color: pastelColors[0],
     },
     {
@@ -265,17 +265,17 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://weather-app.heetparikh.me",
       githubLink: "https://github.com/heet-p/weather-dashboard",
       color: pastelColors[2],
-    },
+    },*/
     {
       id: 4,
       name: "PORTFOLIO_WEBSITE",
       description: "Personal portfolio showcasing projects with interactive animations and responsive design.",
-      technologies: ["REACT", "FRAMER", "TAILWIND"],
-      liveLink: "https://portfolio.heetparikh.me",
+      technologies: ["TYPESCRIPT", "NODEJS", "TAILWIND"],
+      liveLink: "https://heetparikh.me",
       githubLink: "https://github.com/heet-p/portfolio-v2",
       color: pastelColors[3],
     },
-    {
+    /*{
       id: 5,
       name: "BLOG_CMS_SYSTEM",
       description: "Content management system for blogs with markdown support and SEO optimization.",
@@ -292,7 +292,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://chat-app.heetparikh.me",
       githubLink: "https://github.com/heet-p/realtime-chat",
       color: pastelColors[5],
-    },
+    },*/
   ]
 
   useEffect(() => {
