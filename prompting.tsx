@@ -267,7 +267,7 @@ export function PromptingIsAllYouNeed() {
       color: pastelColors[2],
     },*/
     {
-      id: 4,
+      id: 1,
       name: "PORTFOLIO_WEBSITE",
       description: "Personal portfolio showcasing projects with interactive animations and responsive design.",
       technologies: ["TYPESCRIPT", "NODEJS", "TAILWIND"],
