@@ -259,7 +259,7 @@ export function PromptingIsAllYouNeed() {
     },*/
     {
       id: 4,
-      name: "Math_Solver,
+      name: "Math_Solver",
       description: "Interactive Math Logic Solver for helping me in my uni exams.",
       technologies: ["HTML", "TAILWINDCSS", "JavaScript"],
       liveLink: "https://math-solver.heetparikh.me",
