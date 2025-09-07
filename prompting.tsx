@@ -256,16 +256,16 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://taskmanager.heetparikh.me",
       githubLink: "https://github.com/heet-p/task-manager",
       color: pastelColors[1],
-    },
-    {
-      id: 3,
-      name: "WEATHER_DASHBOARD",
-      description: "Interactive weather dashboard with location-based forecasts and data visualization.",
-      technologies: ["VUE", "API", "CHARTS"],
-      liveLink: "https://weather-app.heetparikh.me",
-      githubLink: "https://github.com/heet-p/weather-dashboard",
-      color: pastelColors[2],
     },*/
+    {
+      id: 4,
+      name: "Math_Solver,
+      description: "Interactive Math Logic Solver for helping me in my uni exams.",
+      technologies: ["HTML", "TAILWINDCSS", "JavaScript"],
+      liveLink: "https://math-solver.heetparikh.me",
+      githubLink: "https://github.com/Heet-P/LogicProblemSolver",
+      color: pastelColors[2],
+    },
     {
       id: 1,
       name: "PORTFOLIO_WEBSITE",
