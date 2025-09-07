@@ -272,7 +272,7 @@ export function PromptingIsAllYouNeed() {
       description: "Personal portfolio showcasing projects with interactive animations and responsive design.",
       technologies: ["TYPESCRIPT", "NODEJS", "TAILWIND"],
       liveLink: "https://heetparikh.me",
-      githubLink: "https://github.com/heet-p/portfolio-v2",
+      githubLink: "https://github.com/Heet-P/Portfolio",
       color: pastelColors[3],
     },
    {
