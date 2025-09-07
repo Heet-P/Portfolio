@@ -239,33 +239,6 @@ export function PromptingIsAllYouNeed() {
   const techColors = ["#FFB3BA", "#BAE1FF", "#FFFFBA", "#DDA0DD", "#FFE4B5"]
 
    const projectsData = [
-    /*{
-      id: 1,
-      name: "E_COMMERCE_PLATFORM",
-      description: "Full-stack e-commerce solution with payment integration and admin dashboard.",
-      technologies: ["REACT", "NODE", "STRIPE"],
-      liveLink: "#",
-      githubLink: "https://github.com/Heet-p/",
-      color: pastelColors[0],
-    },
-    {
-      id: 2,
-      name: "TASK_MANAGEMENT_APP",
-      description: "Collaborative task management tool with real-time updates and team features.",
-      technologies: ["NEXT.JS", "SOCKET.IO", "MONGODB"],
-      liveLink: "https://taskmanager.heetparikh.me",
-      githubLink: "https://github.com/heet-p/task-manager",
-      color: pastelColors[1],
-    },
-    {
-      id: 3,
-      name: "WEATHER_DASHBOARD",
-      description: "Interactive weather dashboard with location-based forecasts and data visualization.",
-      technologies: ["VUE", "API", "CHARTS"],
-      liveLink: "https://weather-app.heetparikh.me",
-      githubLink: "https://github.com/heet-p/weather-dashboard",
-      color: pastelColors[2],
-    },*/
     {
       id: 1,
       name: "PORTFOLIO_WEBSITE",
@@ -292,7 +265,16 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://drive.google.com/file/d/1I6Gsg4ZwZl7ULV4y6E-1gZ6dEYDqHTW7/view?usp=sharing",
       githubLink: "https://github.com/dhrumil246/GlobeTrotter_Odoo",
       color: pastelColors[5],
-    }
+    },
+     {
+      id: 4,
+      name: "Math_Solver",
+      description: "Interactive Math Logic Solver for helping me in my uni exams.",
+      technologies: ["HTML", "TAILWINDCSS", "JavaScript"],
+      liveLink: "https://math-solver.heetparikh.me",
+      githubLink: "https://github.com/Heet-P/LogicProblemSolver",
+      color: pastelColors[2],
+    },
   ]
 
   useEffect(() => {
