@@ -1,4 +1,4 @@
-import { PromptingIsAllYouNeed } from "../prompting"
+import { PromptingIsAllYouNeed } from "../Prompting"
 
 export default function Home() {
   return <PromptingIsAllYouNeed />
