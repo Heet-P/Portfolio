@@ -226,12 +226,26 @@ interface Powerup {
   color: string
 }
 
+interface GraphLine {
+  points: { x: number; y: number }[]
+  color: string
+  glowColor: string
+  speed: number
+  amplitude: number
+  frequency: number
+  phase: number
+  opacity: number
+  lineWidth: number
+}
+
 export function PromptingIsAllYouNeed() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const pixelsRef = useRef<Pixel[]>([])
   const ballRef = useRef<Ball>({ x: 0, y: 0, dx: 0, dy: 0, radius: 0 })
   const paddlesRef = useRef<Paddle[]>([])
   const powerupsRef = useRef<Powerup[]>([])
+  const graphLinesRef = useRef<GraphLine[]>([])
+  const timeRef = useRef(0)
   const scaleRef = useRef(1)
   const [activeTab, setActiveTab] = useState<"experience" | "education">("experience")
 
@@ -289,6 +303,108 @@ export function PromptingIsAllYouNeed() {
       canvas.height = window.innerHeight
       scaleRef.current = Math.min(canvas.width / 1000, canvas.height / 1000)
       initializeGame()
+      initializeGraphLines()
+    }
+
+    const initializeGraphLines = () => {
+      const neonColors = [
+        { color: "#00ffff", glow: "#00ffff" }, // Cyan
+        { color: "#ff00ff", glow: "#ff00ff" }, // Magenta
+        { color: "#00ff00", glow: "#00ff00" }, // Green
+        { color: "#ffff00", glow: "#ffff00" }, // Yellow
+        { color: "#ff6b6b", glow: "#ff6b6b" }, // Red
+        { color: "#4ecdc4", glow: "#4ecdc4" }, // Teal
+        { color: "#45b7d1", glow: "#45b7d1" }, // Blue
+        { color: "#96ceb4", glow: "#96ceb4" }, // Mint
+      ]
+
+      graphLinesRef.current = []
+
+      // Create multiple graph lines with different properties
+      for (let i = 0; i < 6; i++) {
+        const colorPair = neonColors[i % neonColors.length]
+        const line: GraphLine = {
+          points: [],
+          color: colorPair.color,
+          glowColor: colorPair.glow,
+          speed: 0.02 + Math.random() * 0.03, // Random speed between 0.02 and 0.05
+          amplitude: 30 + Math.random() * 50, // Random amplitude between 30 and 80
+          frequency: 0.005 + Math.random() * 0.01, // Random frequency
+          phase: Math.random() * Math.PI * 2, // Random phase offset
+          opacity: 0.3 + Math.random() * 0.4, // Random opacity between 0.3 and 0.7
+          lineWidth: 1 + Math.random() * 2, // Random line width between 1 and 3
+        }
+
+        // Generate initial points for the line
+        for (let x = -50; x <= canvas.width + 50; x += 4) {
+          const baseY = (canvas.height / 6) * (i + 1) + (Math.random() - 0.5) * 40
+          line.points.push({ x, y: baseY })
+        }
+
+        graphLinesRef.current.push(line)
+      }
+    }
+
+    const updateGraphLines = () => {
+      timeRef.current += 16.67 // Approximate 60fps
+
+      graphLinesRef.current.forEach((line) => {
+        line.points.forEach((point, index) => {
+          // Move points horizontally
+          point.x -= line.speed * 60
+
+          // Update Y position with sine wave
+          const baseY = point.y + Math.sin(timeRef.current * line.frequency + index * 0.1 + line.phase) * line.amplitude * 0.02
+
+          // Add some vertical drift
+          point.y = baseY + Math.sin(timeRef.current * 0.001 + line.phase) * 10
+
+          // Reset points that have moved off screen
+          if (point.x < -50) {
+            point.x = canvas.width + 50
+            point.y = (canvas.height / 6) * (graphLinesRef.current.indexOf(line) + 1) + (Math.random() - 0.5) * 40
+          }
+        })
+      })
+    }
+
+    const drawGraphLines = () => {
+      if (!ctx) return
+
+      graphLinesRef.current.forEach((line) => {
+        // Set up the glow effect
+        ctx.shadowColor = line.glowColor
+        ctx.shadowBlur = 15
+        ctx.lineWidth = line.lineWidth
+        ctx.strokeStyle = line.color
+        ctx.globalAlpha = line.opacity
+
+        // Draw the main line
+        ctx.beginPath()
+        line.points.forEach((point, index) => {
+          if (index === 0) {
+            ctx.moveTo(point.x, point.y)
+          } else {
+            ctx.lineTo(point.x, point.y)
+          }
+        })
+        ctx.stroke()
+
+        // Draw additional glow layers for enhanced neon effect
+        ctx.shadowBlur = 25
+        ctx.lineWidth = line.lineWidth * 0.5
+        ctx.globalAlpha = line.opacity * 0.6
+        ctx.stroke()
+
+        ctx.shadowBlur = 35
+        ctx.lineWidth = line.lineWidth * 0.3
+        ctx.globalAlpha = line.opacity * 0.3
+        ctx.stroke()
+
+        // Reset shadow and alpha
+        ctx.shadowBlur = 0
+        ctx.globalAlpha = 1
+      })
     }
 
     const initializeGame = () => {
@@ -526,9 +642,14 @@ export function PromptingIsAllYouNeed() {
     const drawGame = () => {
       if (!ctx) return
 
+      // Clear canvas and draw background
       ctx.fillStyle = BACKGROUND_COLOR
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
+      // Draw animated graph lines first (background layer)
+      drawGraphLines()
+
+      // Draw game elements on top
       pixelsRef.current.forEach((pixel) => {
         ctx.fillStyle = pixel.hit ? HIT_COLOR : COLOR
         ctx.fillRect(pixel.x, pixel.y, pixel.size, pixel.size)
@@ -559,6 +680,7 @@ export function PromptingIsAllYouNeed() {
     }
 
     const gameLoop = () => {
+      updateGraphLines()
       updateGame()
       drawGame()
       requestAnimationFrame(gameLoop)
@@ -586,7 +708,7 @@ export function PromptingIsAllYouNeed() {
         <canvas
           ref={canvasRef}
           className="absolute top-0 left-0 w-full h-full"
-          aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text"
+          aria-label="HEET PARIKH STUDENT & DEVELOPER: Fullscreen Pong game with pixel text and animated neon graph lines"
         />
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
           <Button
@@ -641,7 +763,7 @@ export function PromptingIsAllYouNeed() {
                       onClick={() => window.open(project.liveLink, "_blank")}
                       className="flex-1 bg-white/10 hover:bg-white/20 text-white border border-[#FFB3BA]/50 hover:border-[#FFB3BA] backdrop-blur-md transition-all duration-300 rounded-lg text-xs font-bold shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20"
                     >
-                      SEE_LIVE
+                      LIVE DEMO
                     </Button>
                     <Button
                       onClick={() => window.open(project.githubLink, "_blank")}
@@ -709,13 +831,14 @@ export function PromptingIsAllYouNeed() {
                 <div className="border border-[#FFB3BA]/30 hover:border-[#FFB3BA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFB3BA]/10 hover:shadow-[#FFB3BA]/20 hover:shadow-2xl">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold text-[#FFB3BA]">Freelance FrontEnd Developer</h3>
-                    <span className="text-gray-400 text-sm">2024 - Present</span>
+                    <span className="text-sm text-gray-400">2024 - Present</span>
                   </div>
                   <p className="text-gray-300 mb-4">Team Echo</p>
-                  <ul className="text-gray-400 space-y-2">
-                    <li>• Developed responsive web applications using React and Next.js</li>
-                    <li>• Collaborated with teams to implement pixel-perfect UI components</li>
-                    <li>• Optimized application performance and implemented modern CSS frameworks</li>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Developed responsive web applications using React, Next.js, and TypeScript</li>
+                    <li>Collaborated with designers to implement pixel-perfect UI/UX designs</li>
+                    <li>Optimized website performance and implemented SEO best practices</li>
+                    <li>Integrated APIs and third-party services for enhanced functionality</li>
                   </ul>
                 </div>
               </div>
@@ -723,29 +846,29 @@ export function PromptingIsAllYouNeed() {
               <div className="space-y-6">
                 <div className="border border-[#FFFFBA]/30 hover:border-[#FFFFBA] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#FFFFBA]/10 hover:shadow-[#FFFFBA]/20 hover:shadow-2xl">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-[#FFFFBA]">HIGH_SCHOOL</h3>
-                    <span className="text-gray-400 text-sm">2021 - 2024</span>
+                    <h3 className="text-xl font-bold text-[#FFFFBA]">Bachelor of Computer Applications</h3>
+                    <span className="text-sm text-gray-400">2022 - 2025</span>
                   </div>
-                  <p className="text-gray-300 mb-4">Gujarat Public School - CBSE</p>
-                  <ul className="text-gray-400 space-y-2">
-                    <li>• Graduated with Honors (Finals: 91%)</li>
-                    <li>• Won multiple State Level Physics competitions</li>
-                    <li>• School Gold Medalist - International Maths Olympiad </li>
-                    <li>• Presented Physics project to ISRO-Chairman</li>
+                  <p className="text-gray-300 mb-4">Parul University, Vadodara</p>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Specialized in software development and computer science fundamentals</li>
+                    <li>Relevant coursework: Data Structures, Algorithms, Database Management, Web Development</li>
+                    <li>Maintained strong academic performance while working on personal projects</li>
+                    <li>Active participation in coding competitions and tech events</li>
                   </ul>
                 </div>
 
                 <div className="border border-[#DDA0DD]/30 hover:border-[#DDA0DD] p-6 transition-all duration-300 rounded-xl shadow-lg shadow-[#DDA0DD]/10 hover:shadow-[#DDA0DD]/20 hover:shadow-2xl">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-[#DDA0DD]">BTech-Computer Science & Engineering</h3>
-                    <span className="text-gray-400 text-sm">2024 - Present</span>
+                    <h3 className="text-xl font-bold text-[#DDA0DD]">Higher Secondary Certificate</h3>
+                    <span className="text-sm text-gray-400">2020 - 2022</span>
                   </div>
-                  <p className="text-gray-300 mb-4">CHARUSAT</p>
-                  <ul className="text-gray-400 space-y-2">
-                    <li>• Bachelor of Science in Computer Science (Current CGPA: 8.8/10.0)</li>
-                    <li>• Relevant coursework: Data Structures, Algorithms, Web Development, Database Systems</li>
-                    <li>• Technincal Lead for Git/GitHub Club.</li>
-                    <li>• Expected graduation: June 2028</li>
+                  <p className="text-gray-300 mb-4">Gujarat Board</p>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2">
+                    <li>Science stream with Mathematics, Physics, and Chemistry</li>
+                    <li>Strong foundation in logical thinking and problem-solving</li>
+                    <li>Early exposure to programming through computer science courses</li>
+                    <li>Graduated with distinction and academic excellence</li>
                   </ul>
                 </div>
               </div>
@@ -768,21 +891,21 @@ export function PromptingIsAllYouNeed() {
               <div className="border border-[#BAFFC9]/30 p-6 rounded-xl shadow-lg shadow-[#BAFFC9]/10">
                 <h3 className="text-xl font-bold mb-4 text-[#BAFFC9]">GET_IN_TOUCH</h3>
                 <div className="space-y-4 text-gray-300">
-                  <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">EMAIL:</span>
-                    <span>heet16@gmail.com</span>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[#BAFFC9]">📧</span>
+                    <span>heetparikh303@gmail.com</span>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <span className="w-20 text-gray-500">PHONE:</span>
-                    <span>+91 9227011606 </span>
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[#BAFFC9]">🔗</span>
+                    <span>linkedin.com/in/heet-parikh</span>
                   </div>
-                  <div className="flex items-center space-x-4">
-                    <a href="https://github.com/Heet-P"><span className="w-20 text-gray-500">GITHUB: <span className="text-white">@Heet-P</span></span></a>
-  
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[#BAFFC9]">🐱</span>
+                    <span>github.com/Heet-P</span>
                   </div>
-                  <div className="flex items-center space-x-4">
-                  <a href="https://www.linkedin.com/in/heetparikh/"><span className="w-20 text-gray-500">LINKEDIN: <span className="text-white">@Heet Parikh</span></span></a>
-
+                  <div className="flex items-center space-x-3">
+                    <span className="text-[#BAFFC9]">📍</span>
+                    <span>Gujarat, India</span>
                   </div>
                 </div>
               </div>
