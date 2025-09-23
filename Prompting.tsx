@@ -275,6 +275,15 @@ export function PromptingIsAllYouNeed() {
       githubLink: "https://github.com/Heet-P/LogicProblemSolver",
       color: pastelColors[2],
     },
+    {
+      id: 5,
+      name: "Meeting_Monitor",
+      description: "Web App that uses AI to provide real-time feedback on your meeting, it transcribes, summarizes, and analyzes discussions.",
+      technologies: ["REACT", "PYTHON", "FASTAPI", "NVIDIA NIM", "ASSEMBLYAI"],
+      liveLink: "https://meetingmonitor.heetparikh.me",
+      githubLink: "https://github.com/Heet-P/MeetingMonitorBackend",
+      color: pastelColors[1],
+    },
   ]
 
   useEffect(() => {
