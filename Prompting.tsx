@@ -267,7 +267,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://drive.google.com/file/d/1I6Gsg4ZwZl7ULV4y6E-1gZ6dEYDqHTW7/view?usp=sharing",
       githubLink: "https://github.com/dhrumil246/GlobeTrotter_Odoo",
       color: pastelColors[5],
-      image: "/globe-trotters.jpg",
+      image: "/globe-trotter.jpg",
     },
     {
       id: 4,
