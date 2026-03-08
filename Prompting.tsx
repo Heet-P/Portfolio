@@ -247,15 +247,17 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://heetparikh.me",
       githubLink: "https://github.com/Heet-P/Portfolio",
       color: pastelColors[3],
+      image: "/portfolio-website.jpg", // Add your image to public/portfolio-website.jpg
     },
     {
       id: 2,
-      name: "GRAVITAS_DRIFT",
-      description: "Web Based Aestroid Shooter game with leaderboard and database",
-      technologies: ["HTML CANVAS", "JavaScript", "SupaBase"],
-      liveLink: "https://gravitas-drift.netlify.app/",
-      githubLink: "https://github.com/Heet-P/Gravitas-Drift",
+      name: "Code_Sabotage",
+      description: "Web Based Find the imposter game, but with coding and debugging",
+      technologies: ["NEXTJS", "SupaBase"],
+      liveLink: "https://code-sabotage.vercel.app/",
+      githubLink: "https://github.com/Heet-P/Code_Sabotage",
       color: pastelColors[4],
+      image: "/code-sabotage.jpg",
     },
     {
       id: 3,
@@ -265,6 +267,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://drive.google.com/file/d/1I6Gsg4ZwZl7ULV4y6E-1gZ6dEYDqHTW7/view?usp=sharing",
       githubLink: "https://github.com/dhrumil246/GlobeTrotter_Odoo",
       color: pastelColors[5],
+      image: "/globe-trotters.jpg",
     },
     {
       id: 4,
@@ -274,6 +277,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://math-solver.heetparikh.me",
       githubLink: "https://github.com/Heet-P/LogicProblemSolver",
       color: pastelColors[2],
+      image: "/math-solver.jpg",
     },
     {
       id: 5,
@@ -283,6 +287,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://meetingmonitor.heetparikh.me",
       githubLink: "https://github.com/Heet-P/MeetingMonitorBackend",
       color: pastelColors[1],
+      image: "/meeting-monitor.jpg",
     },
     {
       id: 1,
@@ -292,6 +297,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://blog.heetparikh.me",
       githubLink: "https://github.com/Heet-P/Blog",
       color: pastelColors[3],
+      image: "/blog.jpg",
     },
     {
       id: 7,
@@ -301,6 +307,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://blue-verse-one.vercel.app",
       githubLink: "https://github.com/dhrumil246/BlueVerse",
       color: pastelColors[5],
+      image: "/quizzx.jpg",
     }
   ]
 
@@ -643,8 +650,26 @@ export function PromptingIsAllYouNeed() {
                 className="bg-gray-900 border-2 border-[#BAE1FF]/30 hover:border-[#BAE1FF] transition-all duration-300 group rounded-xl overflow-hidden shadow-lg shadow-[#BAE1FF]/10 hover:shadow-[#BAE1FF]/20 hover:shadow-2xl"
               >
                 <CardContent className="p-6">
-                  <div className="h-48 bg-gray-800 mb-4 flex items-center justify-center border border-[#FFFFBA]/20 group-hover:border-[#FFFFBA]/50 transition-colors rounded-lg">
-                    <div className="text-6xl text-gray-600 group-hover:text-gray-400 transition-colors">
+                  <div className="h-48 bg-gray-800 mb-4 flex items-center justify-center border border-[#FFFFBA]/20 group-hover:border-[#FFFFBA]/50 transition-colors rounded-lg overflow-hidden relative">
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={`${project.name} preview`}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        onError={(e) => {
+                          // Fallback to ID if image fails to load
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.parentElement?.classList.remove('overflow-hidden');
+                          if (e.currentTarget.parentElement?.querySelector('.fallback-id')) {
+                            (e.currentTarget.parentElement.querySelector('.fallback-id') as HTMLElement).style.display = 'block';
+                          }
+                        }}
+                      />
+                    ) : null}
+                    <div
+                      className="fallback-id text-6xl text-gray-600 group-hover:text-gray-400 transition-colors absolute inset-0 flex items-center justify-center pointer-events-none"
+                      style={{ display: project.image ? 'none' : 'block' }}
+                    >
                       [{String(project.id).padStart(2, "0")}]
                     </div>
                   </div>
