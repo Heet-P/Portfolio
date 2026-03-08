@@ -284,6 +284,24 @@ export function PromptingIsAllYouNeed() {
       githubLink: "https://github.com/Heet-P/MeetingMonitorBackend",
       color: pastelColors[1],
     },
+    {
+      id: 6,
+      name: "Blog_Website",
+      description: "Blog Website for my blog posts about tech, and me documenting my journey through this AI era.",
+      technologies: ["NEXTJS", "SUPABASE"],
+      liveLink: "https://blog.heetparikh.me",
+      githubLink: "https://github.com/Heet-P/Blog",
+      color: pastelColors[3],
+    },
+    {
+      id: 7,
+      name: "QuizzX",
+      description: "Gamified Quiz App for students to prepare for exams, allows professors to create and manage quizzes all with proctored processes and live Leaderboards.",
+      technologies: ["NodeJS", "ExpressJS", "Supabase", "Clerk"],
+      liveLink: "https://blue-verse-one.vercel.app",
+      githubLink: "https://github.com/dhrumil246/BlueVerse",
+      color: pastelColors[5],
+    }
   ]
 
   useEffect(() => {
@@ -344,12 +362,12 @@ export function PromptingIsAllYouNeed() {
           wordIndex === 0
             ? calculateWordWidth(word, adjustedLargePixelSize)
             : words[1].split(" ").reduce((width, w, index) => {
-                return (
-                  width +
-                  calculateWordWidth(w, adjustedSmallPixelSize) +
-                  (index > 0 ? WORD_SPACING * adjustedSmallPixelSize : 0)
-                )
-              }, 0)
+              return (
+                width +
+                calculateWordWidth(w, adjustedSmallPixelSize) +
+                (index > 0 ? WORD_SPACING * adjustedSmallPixelSize : 0)
+              )
+            }, 0)
 
         let startX = (canvas.width - totalWidth) / 2
 
@@ -680,11 +698,10 @@ export function PromptingIsAllYouNeed() {
           <div className="flex justify-center mb-12">
             <div className="relative bg-gray-800/80 p-1 rounded-xl border-2 border-[#FFB3BA]/50 backdrop-blur-sm shadow-lg shadow-[#FFB3BA]/20">
               <div
-                className={`absolute top-1 h-10 bg-gradient-to-r from-[#FFB3BA] via-[#FF6B9D] to-[#BAE1FF] rounded-lg transition-all duration-500 shadow-lg ${
-                  activeTab === "experience"
-                    ? "left-1 w-[120px] shadow-[#FFB3BA]/50"
-                    : "left-[122px] w-[100px] shadow-[#BAE1FF]/50"
-                }`}
+                className={`absolute top-1 h-10 bg-gradient-to-r from-[#FFB3BA] via-[#FF6B9D] to-[#BAE1FF] rounded-lg transition-all duration-500 shadow-lg ${activeTab === "experience"
+                  ? "left-1 w-[120px] shadow-[#FFB3BA]/50"
+                  : "left-[122px] w-[100px] shadow-[#BAE1FF]/50"
+                  }`}
                 style={{
                   boxShadow:
                     activeTab === "experience"
@@ -695,18 +712,16 @@ export function PromptingIsAllYouNeed() {
               <div className="relative flex">
                 <button
                   onClick={() => setActiveTab("experience")}
-                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${
-                    activeTab === "experience" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
-                  }`}
+                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${activeTab === "experience" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
+                    }`}
                   style={{ width: "120px" }}
                 >
                   EXPERIENCE
                 </button>
                 <button
                   onClick={() => setActiveTab("education")}
-                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${
-                    activeTab === "education" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
-                  }`}
+                  className={`px-4 py-2 text-sm font-bold transition-all duration-300 rounded-lg ${activeTab === "education" ? "text-white drop-shadow-lg" : "text-gray-400 hover:text-white"
+                    }`}
                   style={{ width: "100px" }}
                 >
                   EDUCATION
@@ -805,7 +820,7 @@ export function PromptingIsAllYouNeed() {
                 </div>
               </div>
             </div>
-            
+
             {/* Contact Form */}
             <div className="border border-[#FFB3BA]/30 p-6 rounded-xl shadow-lg shadow-[#FFB3BA]/10">
               <h3 className="text-xl font-bold mb-6 text-[#FFB3BA]">SEND_MESSAGE</h3>
