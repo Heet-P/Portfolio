@@ -240,7 +240,7 @@ export function PromptingIsAllYouNeed() {
 
   const projectsData = [
     {
-      id: 1,
+      id: 6,
       name: "PORTFOLIO_WEBSITE",
       description: "Personal portfolio showcasing projects with interactive animations and responsive design.",
       technologies: ["TYPESCRIPT", "NODEJS", "TAILWIND"],
@@ -285,7 +285,7 @@ export function PromptingIsAllYouNeed() {
       color: pastelColors[1],
     },
     {
-      id: 6,
+      id: 1,
       name: "Blog_Website",
       description: "Blog Website for my blog posts about tech, and me documenting my journey through this AI era.",
       technologies: ["NEXTJS", "SUPABASE"],
