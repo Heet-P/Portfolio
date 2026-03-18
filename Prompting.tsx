@@ -250,6 +250,16 @@ export function PromptingIsAllYouNeed() {
       image: "/portfolio-website.jpg", // Add your image to public/portfolio-website.jpg
     },
     {
+      id: 7,
+      name: "Computer Organization & Architecture Project",
+      description: "Academic Project for CEUC202 Computer Organization & Architecture.",
+      technologies: ["HTML5", "JavaScript", "Blender"],
+      liveLink: "https://coa.heetparikh.me",
+      githubLink: "https://github.com/Heet-P/COA_Project",
+      color: pastelColors[4],
+      image: "/coa.jpg", // Add your image to public/portfolio-website.jpg
+    },
+    {
       id: 2,
       name: "Code_Sabotage",
       description: "Web Based Find the imposter game, but with coding and debugging",
