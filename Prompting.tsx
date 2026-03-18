@@ -257,7 +257,7 @@ export function PromptingIsAllYouNeed() {
       liveLink: "https://coa.heetparikh.me",
       githubLink: "https://github.com/Heet-P/COA_Project",
       color: pastelColors[4],
-      image: "/coa.jpg", // Add your image to public/portfolio-website.jpg
+      image: "/coa.jpeg", // Add your image to public/portfolio-website.jpg
     },
     {
       id: 2,
